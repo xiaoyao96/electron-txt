@@ -17,19 +17,33 @@ const createWindow = () => {
     height: 600,
   });
   const menu = Menu.buildFromTemplate(menus);
-    menu.items[0].submenu.insert(0, new MenuItem({
+    menu.items[0].submenu.append(new MenuItem({
         label: '新建',
         click() {
             mainWindow.webContents.send('action', 'new');
         },
         accelerator: 'CmdorCtrl+N'
     }))
-    menu.items[0].submenu.insert(1, new MenuItem({
+    menu.items[0].submenu.append(new MenuItem({
         label: '打开',
         click() {
             mainWindow.webContents.send('action', 'open');
         },
         accelerator: 'CmdorCtrl+O'
+    }))
+    menu.items[0].submenu.append(new MenuItem({
+        label: '保存',
+        click() {
+            mainWindow.webContents.send('action', 'save')
+        },
+        accelerator: 'CmdorCtrl+S'
+    }))
+    menu.items[0].submenu.append(new MenuItem({
+        label: '退出',
+        click() {
+            mainWindow.webContents.send('action', 'exit')
+        },
+        accelerator: 'CmdorCtrl+Q'
     }))
   menu.items[1].submenu.append(new MenuItem({
       label: '刷新',
